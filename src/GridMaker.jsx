@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ImagePicker } from "./SrcToElement";
 import { ImageArrayGrabberJS } from "./ImageArrayGrabberJS";
+import './GridMaker.css'
+import { OnClickFunction } from "./ImageClickFunction";
 
 export function GridMaker() {
     const [imgArray, setImageArray] = useState(null)
@@ -20,9 +22,9 @@ export function GridMaker() {
         const randomIndices = []
 
         for (let i = 0; i < 9; i++) {
-            let choice = Math.floor(Math.random() * 80)
+            let choice = Math.floor(Math.random() * imgArray.length)
             while (randomIndices.includes(choice)) {
-                choice = Math.floor(Math.random() * 80)
+                choice = Math.floor(Math.random() * imgArray.length)
             }
             randomIndices.push(choice)
         }
@@ -31,10 +33,11 @@ export function GridMaker() {
 
         return (
             <div id="three-by-three-grid">
-
+                {randomIndices.map((index)=>(
+                    <img key={imgArray[index].id} src={imgArray[index].src.medium} id={imgArray[index].id} onClick={(event)=>OnClickFunction(event)}></img>
+                ))}
             </div>
         )
     }
-
 
 }

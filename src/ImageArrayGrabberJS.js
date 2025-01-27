@@ -5,12 +5,13 @@ export function ImageArrayGrabberJS(page_num = 1) {
     "w93M0NVwaG2KkpiVWcIizUINC4lWLaUP9siQKz7dknMuIgR7lfgUrOoL"
   );
 
-  const query = "tree";
+  const query = "forest";
 
   const resultsPromise = client.photos.search({
     query,
     per_page: 80,
     page: page_num,
+    orientation:'square'
   });
   return resultsPromise;
 
